@@ -10,3 +10,10 @@ I just did what i explained on IG about the hybrid notification approach:
 - /android : Kotlin snippets (FirebaseMessagingService, Worker, helper) + README-ANDROID.md
 
 Try to replace the placeholders (YOUR_KEY_ID, YOUR_TEAM_ID, paths, package/module IDs) with values from your Apple/Firebase projects and you are good to go.
+
+# So, the key concepts are:
+
+1. Schedule local notifications for reminders using UNUserNotificationCenter (iOS) or AlarmManager/WorkManager (Android). The user will get reminders even while offline.
+2. Keep local schedule authoritative on the device: when tasks change remotely, the server sends a silent "data-only" push to the device telling it to fetch the latest tasks and reschedule local notifications.
+3. Make silent pushes for iOS... include "content-available": 1 and use APNs token-based auth (HTTP/2). App must have Background Modes -> Remote notifications. iOS runs didReceiveRemoteNotification:fetchCompletionHandler: to fetch and update state.
+4. Make silent/data messages for Android: use FCM data messages (with no notification field) with high priority so the message wakes background handlers; then update local schedule via WorkManager/AlarmManager.

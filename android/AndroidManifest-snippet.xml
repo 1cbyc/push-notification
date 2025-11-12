@@ -1,4 +1,4 @@
-<!-- Add inside <application> -->
+<!-- Add this to your AndroidManifest.xml file inside <application> -->
 <service
     android:name=".MyFirebaseMessagingService"
     android:exported="false">

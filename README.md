@@ -38,7 +38,7 @@ For APNs silent push (JSON):
 
 For FCM data-only message (Node firebase-admin):
 
-```node
+```js
 const message = {
 token: '<device-token>',
 android: { priority: 'high' },

@@ -1,8 +1,8 @@
 /**
  * Minimal server to send silent/data pushes to iOS (APNs) and Android (FCM).
  *
- * WARNING: This is demo code. Do NOT commit keys to version control.
- * Replace placeholders with your own service-account JSON and APNs key file paths.
+ * WARNING: Do NOT commit keys to github.
+ * Please replace placeholders with your own service-account JSON and APNs key file paths.
  */
 const apn = require('apn');
 const admin = require('firebase-admin');

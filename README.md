@@ -23,3 +23,25 @@ Try to replace the placeholders (YOUR_KEY_ID, YOUR_TEAM_ID, paths, package/modul
 On iOS...keep in mind that iOS will throttle silent pushes; they are not guaranteed. So, just use them to fetch deltas and reschedule local reminders; do not rely solely on silent pushes for exact-time reminders. Local scheduled notifications are the fallback. Also, always keep the local schedule authoritative for delivering time-sensitive reminders (alarms, calendar events). 
 
 On Android, keep in mind that OEM-specific battery savers may block background work...also, test widely and consider prompting users to exempt the app if necessary. I also advice you securely manage device tokens and rotate server keys. Revoke lost keys too.
+
+
+## My idea of the payloads:
+For APNs silent push (JSON):
+
+```json
+{
+"aps": { "content-available": 1 },
+"sync": true,
+"changeset_id": 12345
+}
+```
+
+For FCM data-only message (Node firebase-admin):
+
+```json
+const message = {
+token: '<device-token>',
+android: { priority: 'high' },
+data: { sync: 'true', changeset_id: '12345' }
+};
+```

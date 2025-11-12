@@ -1,0 +1,12 @@
+{
+  "name": "hybrid-push-server",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "apn": "^4.0.0-beta.8",
+    "firebase-admin": "^11.0.0",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  }
+}
